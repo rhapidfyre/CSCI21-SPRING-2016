@@ -25,50 +25,64 @@ string PrepareForDisplay(int values[], int size, char separator)
 
 bool HasValue(int values[], int size, int value)
 {
-    size = sizeof(values);
-    bool boolean = false;
     for(int i = 0; i < size; i++)
     {
         if(values[i] == value)
         {
-            boolean = true;
+            return true;
         }
     }
-    return boolean;
+    return false;
 }
 
 int ValueAt(int values[], int size, int index, bool &error)
 {
-    int i = 0;
-    int new_index = 0;
-    i = i + index;
-    size = sizeof(values);
     if(index >= size)
     {
+        error = true;
+        return 0;
     }
     else
     {
-        int new_index = values[i];
+        error = false;
+        return values[index];
     }
-    return new_index;
 }
 
 int Sum(int values[], int size)
 {
     int running_total = 0;
-    size = sizeof(values);
-    for(int i = 0; i <= size; i++)
+    for(int i = 0; i < size; i++)
     {
         running_total = running_total + values[i];
     }
+    return running_total;
 }
 
 bool SwapValues(int values[], int size, int index1, int index2)
 {
-    size = sizeof(values);
-    index2 = values[1];
-    index1 = values[0];
-    bool boolean = false;
     
-    return boolean;
+    if(index1 < 0 || index2 < 0)
+    {
+        return false;
+    }
+    else if(index1 < size)
+    {
+        if(index2 < size)
+        {
+            int x = 0;
+            x = values[index1];
+            values[index1] = values[index2];
+            values[index2] = x;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    else
+    {
+        return false;
+    }
 }
