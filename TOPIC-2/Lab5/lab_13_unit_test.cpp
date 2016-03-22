@@ -24,7 +24,7 @@ TEST_CASE ("Box<int> class functionality", "[Box]") {
 	ostringstream ss;
 	ss << intBox;
 	CHECK(ss.str() == "42");
-}/*
+}
 
 TEST_CASE ("Box<bool> class functionality", "[Box]") {
 	Box<bool> boolBox(false);
@@ -86,5 +86,5 @@ TEST_CASE("Sum()") {
     CHECK(Sum(string_values, 1) == "A");
     CHECK(Sum(string_values, 0) == "");
   }
-}*/
+}
 
