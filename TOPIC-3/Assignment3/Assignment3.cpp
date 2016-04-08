@@ -60,37 +60,44 @@ Box::~Box() {
     // Come back to this
 }
 
-Box::setBoxNumber(boxNumber) {
+void Box::setBoxNumber(boxNumber) {
     boxNumber_ = boxNumber;
 }
 
-Box::setBoxColor(boxColor) {
+void Box::setBoxColor(boxColor) {
     boxColor_ = boxColor;
 }
 
-Box::getBoxNumber() {
+int Box::getBoxNumber() {
     return boxNumber_;
 }
 
-Box::getBoxColor() {
+string Box::getBoxColor() {
     return boxColor_;
 }
 
-Box::prizeCapacity() {
+int Box::prizeCapacity() {
     
 }
 
-Box::prizeCount() {
+int Box::prizeCount() {
     
 }
 
-Box::addPrize(Prize prize) {
+bool Box::addPrize(Prize prize) {
     
 }
 
-Box::getPrize(unsigned int index) {
+Prize& Box::getPrize(unsigned int index) {
     
 }
-Box::removePrize(unsigned int index) {
+Prize Box::removePrize(unsigned int index) {
+    
+}
+
+
+
+int main() {
+    cout << "Welcome!!" << endl;
     
 }

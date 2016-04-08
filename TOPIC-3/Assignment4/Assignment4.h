@@ -1,52 +1,65 @@
 /*
  *
- *
- *
- *
+ *      Michael Harris
+ *      Assignment 4
+ *      April 7th 2016
  */
  
 // Includes
 #include <cstdlib>
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
+#include <time>
 using namespace std;
 
+// Header Guards
+#ifndef DLNODE
+#define DLNODE
 // DLNode Class Declarations
 class DLNode {
     public:
         DLNode();
-        DLNode(int newContents);
+        DLNode(string newContents);
         virtual ~DLNode();
-        void setContents(int newContents);
+        void setContents(string newContents);
         void setNext(DLNode* newNext);
         void setPrevious(DLNode* newPrevious);
-        int getContents() const;
+        string getContents() const;
         DLNode* getNext() const;
         DLNode* getPrevious() const;
     private:
-        int contents_;
-        DLNode* previous_node_;
-        DLNode* next_node_;
+        string contents;
+        DLNode* previous_node;
+        DLNode* next_node;
 };
 
+#endif
+#ifndef DLLIST
+#define DLLIST
 // DLList Class Declarations
 class DLList {
     public:
         DLList();
         ~DLList();
         unsigned int getSize() const;
-        void pushFront(int newContents);
-        void pushBack(int newContents);
-        void insert(int newContents);
-        int getFront() const;
-        int getBack() const;
-        bool get(int target) const;
-        void popFront();
-        void popBack();
-        bool removeFirst(int target);
-        bool removeAll(int target);
+        void pushFront(string newContents); // New Node to Front
+        void pushBack(string newContents); // New Node to Back
+        void insert(string newContents); // New Node in Order
+        string getFront() const; // GetHead
+        string getBack() const; // GetTail
+        bool get(string target) const; // True if Exists
+        string getStop(int number); // Return Name
+        void popFront(); // Remove Head Node
+        void popBack(); // Remove Tail Node
+        bool removeFirst(string target); // Remove First Node Instance
+        bool removeAll(string target); // Remove Last Node Instance
         void clear();
-        friend ostream& operator<<(ostream& out, const DLLList& src);
+        friend ostream& operator<<(ostream& out, const DLList& src);
     private:
-        int node_count_;
-        DLList* head_node_;
-        DLList* tail_node_;
+        int node_count;
+        DLList* head_node;
+        DLList* tail_node;
 };
+#endif
