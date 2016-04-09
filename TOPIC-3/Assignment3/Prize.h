@@ -4,6 +4,9 @@
     Assignment #3 Prize File
 */
 
+// Includes
+#include <cstdlib>
+#include <iostream>
 using namespace std;
 
 #ifndef PRIZE
@@ -12,11 +15,11 @@ using namespace std;
 class Prize {
     public:
         Prize();
-        Prize(prizeName, prizeValue);
+        Prize(string prizeName, int prizeValue);
         ~Prize();
-        friend bool operator ==(prize1, prize2);
-        void setPrizeName(prizeName);
-        void setPrizeValue(prizeValue);
+        //friend bool operator ==(prizeName, prizeName);
+        void setPrizeName(string prizeName);
+        void setPrizeValue(int prizeValue);
         string getPrizeName();
         int getPrizeValue();
     private:

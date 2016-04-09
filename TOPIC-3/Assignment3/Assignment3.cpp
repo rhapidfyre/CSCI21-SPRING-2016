@@ -1,5 +1,4 @@
 // Includes
-#include "Prize.h"
 #include "Box.h"
 
 // Prize Class Definitions
@@ -9,7 +8,7 @@ Prize::Prize() {
     prizeValue_ = 0;
 }
 
-Prize::Prize(prizeName, prizeValue) {
+Prize::Prize(string prizeName, int prizeValue) {
     // Applies given values for overload
     prizeName_ = prizeName;
     prizeValue_ = prizeValue;
@@ -19,15 +18,15 @@ Prize::~Prize() {
     // Empty
 }
 
-bool operator ==(prize1, prize2) {
-    return false;
-}
+//bool operator ==(prize1, prize2) {
+//    return false;
+//}
 
-void Prize::setPrizeName(prizeName) {
+void Prize::setPrizeName(string prizeName) {
     prizeName_ = prizeName;
 }
 
-void Prize::setPrizeValue(prizeValue) {
+void Prize::setPrizeValue(int prizeValue) {
     prizeValue_ = prizeValue;
 }
 
@@ -46,10 +45,10 @@ Box::Box() {
     boxColor_ = "NO COLOR";
     prizeCapacity_ = 5;
     prizeCount_ = 0;
-    prizes_[];
+    prizes_[prizeCapacity_];
 }
 
-Box::Box(boxNumber, boxColor, prizeCapacity) {
+Box::Box(unsigned int boxNumber, string boxColor, unsigned int prizeCapacity) {
     // Applies given values for overload
     boxNumber_ = boxNumber;
     boxColor_ = boxColor;
@@ -60,15 +59,15 @@ Box::~Box() {
     // Come back to this
 }
 
-void Box::setBoxNumber(boxNumber) {
+void Box::setBoxNumber(unsigned int boxNumber) {
     boxNumber_ = boxNumber;
 }
 
-void Box::setBoxColor(boxColor) {
+void Box::setBoxColor(string boxColor) {
     boxColor_ = boxColor;
 }
 
-int Box::getBoxNumber() {
+unsigned int Box::getBoxNumber() {
     return boxNumber_;
 }
 
@@ -76,11 +75,11 @@ string Box::getBoxColor() {
     return boxColor_;
 }
 
-int Box::prizeCapacity() {
+unsigned int Box::getPrizeCapacity() {
     
 }
 
-int Box::prizeCount() {
+unsigned int Box::getPrizeCount() {
     
 }
 
@@ -92,12 +91,5 @@ Prize& Box::getPrize(unsigned int index) {
     
 }
 Prize Box::removePrize(unsigned int index) {
-    
-}
-
-
-
-int main() {
-    cout << "Welcome!!" << endl;
     
 }

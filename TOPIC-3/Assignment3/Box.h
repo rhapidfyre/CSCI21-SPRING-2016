@@ -4,7 +4,8 @@
     Assignment #3 Box File
 */
 
-using namespace std;
+// Includes
+#include "Prize.h"
 
 #ifndef BOX
 #define BOX
@@ -12,14 +13,14 @@ using namespace std;
 class Box {
     public:
         Box();
-        Box(boxNumber, boxColor, prizeCapacity);
+        Box(unsigned int boxNumber, string boxColor, unsigned int prizeCapacity);
         ~Box();
-        void setBoxNumber(boxNumber);
-        void setBoxColor(boxColor);
-        int getBoxNumber();
+        void setBoxNumber(unsigned int boxNumber);
+        void setBoxColor(string boxColor);
+        unsigned int getBoxNumber();
         string getBoxColor();
-        int prizeCapacity();
-        int prizeCount();
+        unsigned int getPrizeCapacity();
+        unsigned int getPrizeCount();
         bool addPrize(Prize prize);
         Prize& getPrize(unsigned int index);
         Prize removePrize(unsigned int index);

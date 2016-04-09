@@ -1,14 +1,17 @@
-#include "Assignment4.h"
+#include "DLList.h"
 
 int main() {
     //Create Variables
-    string line;
+    string newContents;
     string compare;
+    string getcount;
+    string getiterator;
+    string stopped;
     char letter;
-    int number;
-    int player_count = 5;
+    int counter;
+    int player_count;
     
-	cout << "Assignment4 Started..." << endl;;
+	cout << "\n\nAssignment4 Started..." << endl;;
 	//Create file var
 	ifstream inputfile;
 	//Open file
@@ -16,22 +19,65 @@ int main() {
 	
 	// Debugger
 	if(inputfile.is_open())
-		{cout << "Inputfile was opened successfully." << endl;
+		{cout << " Inputfile was opened successfully!\n" << endl;
 	}else{
-	    cout << "Inputfile Failed to Open" << endl;}
+	    cout << " Inputfile Failed to Open.\n" << endl;
+		
+	}
 	    
 	DLList list;
 	
 	while(inputfile.is_open()) {
+		
+		// Get int from input file as string, turn it into int
+		// File input only reads in CHAR and STRING. So we need to convert it.
+		getline(inputfile, getcount);
+		stringstream getint(getcount);
+		getint >> player_count;
+		
+		// Building the Linked List
 	    for(int i = 0; i<player_count;i++) {
-	        getline(inputfile, line);
-	        list.insert(line);
-	        cout << "Line Inserted: i=" << i << ".L:" << line << endl;
+	        getline(inputfile, newContents);
+	        cout<<"    Creating Node "<<i<<" with Contents: "<<newContents<<endl;
+	        list.insert(newContents);
+	        sleep(3);
+	        cout<<"    Node "<<i<<" Created." <<endl;
+	    }
+	    
+	    cout << "\nNode creation completed. Count = " << player_count << "\n" << endl;
+	    // Clear our Stringstream for later use
+	    getint.clear();
+	    
+	    // The names have all been entered thanks to the dynamic file read-in module.
+	    // The next values will all be the amount of times to move through the list.
+	    // So, we need to loop this through until the file is done.
+	    while(!inputfile.eof()) {
+	    	// Get the next line, which is the amount to move through the linked list.
+	    	getline(inputfile, getiterator);
+	    	stringstream iterator(getiterator);
+	    	iterator >> counter;
+	    	
+	    	// Run the getStop function to read out where it stops.
+	    	// It will then run the remove function.
+	    	if(list.removeFirst(list.getStop(counter)) == true) {
+	    		cout << "  Elimination Successful.\n" << endl;
+	    	}else{
+	    		cout << "  Elimination Failed.\n" << endl;
+	    	}
 	        sleep(1);
 	    }
-		// Close File
+	    
+	    // Report the winner
+	    if(inputfile.eof()) {
+	    	cout << "\n\nThe winner is: " << list.getFront() << "!" << endl;
+	    }
+	    
+	    // Clear all of the nodes and free the memory.
+	    list.clear();
+	    
+		// Close File, we're done
 		inputfile.close();
 	}
-	cout << "Program Complete!" << endl;
+	cout << "Program Complete!\n" << endl;
 	return 0;
 }
