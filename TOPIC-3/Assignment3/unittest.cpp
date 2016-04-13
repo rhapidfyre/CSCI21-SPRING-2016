@@ -26,7 +26,7 @@ TEST_CASE("Make default Box"){
   SECTION ("getPrizeCount()"){
 	CHECK(b1.getPrizeCount() == 0);
   }
-}/*
+}
 
 TEST_CASE("Default Box Functions"){
   Box b1;
@@ -62,7 +62,7 @@ TEST_CASE ("Test Prizes"){
   
   SECTION("removePrize(0)"){
  	CHECK (b2.removePrize(0) == Prize());
-  } 	
+  }
   
   b2.addPrize(Prize("BRONZE PRIZE", 1));
   SECTION("addPrize(\"Bronze\")"){
@@ -154,4 +154,4 @@ TEST_CASE ("Prize 1 vs Prize 2"){
   p2.setPrizeValue(1);
 	CHECK ((p1 == p2) == false);
   }
-}*/
+}

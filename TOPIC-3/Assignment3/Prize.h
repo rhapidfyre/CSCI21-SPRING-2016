@@ -17,14 +17,14 @@ class Prize {
         Prize();
         Prize(string prizeName, int prizeValue);
         ~Prize();
-        //friend bool operator ==(prizeName, prizeName);
+        friend bool operator ==(const Prize& prize1, const Prize& prize2);
         void setPrizeName(string prizeName);
         void setPrizeValue(int prizeValue);
         string getPrizeName();
         int getPrizeValue();
     private:
         string prizeName_;
-        unsigned int prizeValue_;
+        int prizeValue_;
 };
 
 #endif
