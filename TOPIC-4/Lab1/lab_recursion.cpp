@@ -26,9 +26,20 @@ string decToBin(int num)
 	return ss;
 }
 
+// Got help from Rus
 unsigned int binToDec(int num) {
-	unsigned int convert = num;
-	if (convert > 0) {
-		binToDec(convert/2);
-	} return convert;
-}
+	
+	unsigned int x = 0;
+	unsigned int y = 1;
+	if (num > 0) {													
+		if(num%2 != 0) {										
+			x = x + y;
+			y *= 2;
+			return  x + binToDec(num/10);
+		} else {										
+			y *= 2;
+			return  x + binToDec(num/10);
+		}
+	}
+	return x;
+}	
