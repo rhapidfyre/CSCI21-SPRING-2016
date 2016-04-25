@@ -14,14 +14,16 @@
  * @param number to be converted.
  * @return a stringstream.
  */
-void decToBin(int num)
+string decToBin(int num)
 {
+    stringstream ss;
 	if (num > 1) //note this makes the base case num = 0
 	{
-		decToBin(num/2); //recursive call
+		ss << decToBin(num/2); //recursive call
 	}
 
-	cout<<(num%2); //outputs in correct order
+	ss<<(num%2); //outputs in correct order
+	return ss;
 }
 
 unsigned int binToDec(int num) {

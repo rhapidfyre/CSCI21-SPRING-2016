@@ -29,7 +29,7 @@ void SLList::InsertHead(int contents) {
 void SLList::InsertTail(int contents) {
     //Same as Head but a tad bit different.
     SLNode *new_node = new SLNode(contents);
-    tail_->set_next_node(new_node);
+    new_node->set_next_node(tail_);
     tail_ = new_node;
     if(head_ == NULL) {
         head_ = new_node;

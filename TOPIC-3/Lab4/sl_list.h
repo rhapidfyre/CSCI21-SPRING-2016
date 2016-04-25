@@ -1,5 +1,6 @@
 #include <cstddef>
 #include <sstream>
+#include <iostream>
 #include "sl_node.h"
 using namespace std;
 
