@@ -11,10 +11,14 @@ class BSTree {
         void Clear();
         unsigned int size() const;
         string InOrder();
+        bool Remove(int contents);
+        int FindMin();
     private:
         bool Insert(int contents, BSTNode*& node);
         void Clear(BSTNode*& node);
         string InOrder(BSTNode*& node);
+        bool Remove(int contents, BSTNode*& node);
+        int FindMin(BSTNode* node) const;
         BSTNode* root_;
         unsigned int size_;
 };

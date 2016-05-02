@@ -94,19 +94,71 @@ void BSTree::Clear(BSTNode*& node)
     }
     
 } 
-string BSTree::InOrder(BSTNode*& output)
+string BSTree::InOrder(BSTNode*& node)
 {
     stringstream ss;
-    if (output != NULL) {
-        if(output->left_child() != NULL) {
-            ss << InOrder(output->left_child());
+    if (node != NULL) {
+        if(node->left_child() != NULL) {
+            ss << InOrder(node->left_child());
         }
         
-        ss << output->contents() << " ";
+        ss << node->contents() << " ";
         
-        if(output->right_child() != NULL) {
-            ss << InOrder(output->right_child());
+        if(node->right_child() != NULL) {
+            ss << InOrder(node->right_child());
         }
         return ss.str();
-    }else{return "";}
+    } else {
+        return "";
+        
+    }
+}
+
+bool BSTree::Remove(int contents) {
+    return Remove(contents, root_);
+}
+
+int BSTree::FindMin() {
+    if (root_ == NULL){
+        return 0;
+    } else {
+        return FindMin(root_);
+    }
+}
+
+bool BSTree::Remove(int contents, BSTNode*& node) {
+    if(node == NULL) {
+        return false;
+    }
+    else if(contents < node->contents()) {
+        return Remove(contents, node->left_child());
+    }
+    else if(contents > node->contents()) {
+        return Remove(contents, node->right_child());
+    } else {
+        if(node->left_child() != NULL) {
+            node->set_contents(FindMin(node->left_child()));
+        }
+        else if (node->right_child() != NULL) {
+            FindMin(node->right_child());
+            node->set_contents(FindMin(node->right_child()));
+        } else {
+            delete node;
+        }
+        return true;
+    }
+}
+
+int BSTree::FindMin(BSTNode* hunter) const {
+       if (hunter == NULL) {
+           return 0;
+        }
+       else if (hunter->left_child() != NULL) {
+           return FindMin(hunter->left_child());
+        }
+       else if (hunter->right_child() != NULL) {
+           return FindMin(hunter->right_child());
+        } else {
+           return hunter->contents();
+        }
 }
