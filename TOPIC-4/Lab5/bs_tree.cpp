@@ -161,7 +161,10 @@ bool BSTree::Remove(int contents, BSTNode*& node) {
             return Remove(keep, node->right_child());
         }
         else if(node->left_child() != NULL && node->right_child() == NULL) {
-            root_ = node->left_child();
+            BSTNode * temp = node;
+            node = node->left_child();
+            delete temp;
+            temp = NULL;
             size_--;
             return true;
         } else {
