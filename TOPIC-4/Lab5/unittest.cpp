@@ -388,4 +388,5 @@ TEST_CASE("Building a Tree to test FindMin() and Remove()") {
     CHECK(tree.InOrder() == "");
     CHECK(tree.FindMin() == 0);
   }
+  
 }
