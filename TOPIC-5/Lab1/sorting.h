@@ -15,6 +15,9 @@ using std::string;
 
 // For Testing, DO NOT ALTER!
 extern bool GRADER;
+
+void DisplayArray(int values[]);
+
 bool CompareArrays(int array_one[], int array_two[], unsigned int size);
 /*
  * Apply the bubble sort algorithm to sort an array of integers.
