@@ -2,6 +2,8 @@
 #include <cstdlib>
 #include <sstream>
 #include <string>
+#include <fstream>
+#include <istream>
 using namespace std;
 
 #ifndef BST
@@ -10,8 +12,8 @@ using namespace std;
 template <class ND>
 class BSTNodeT {
     public:
-        BSTNodeT();
-        BSTNodeT(ND contents);
+    //    BSTNodeT();
+        BSTNodeT(ND value = ND());
         ~BSTNodeT();
         void SetContents(ND contents);
         void SetLeft(BSTNodeT<ND>* Node);
@@ -27,19 +29,19 @@ class BSTNodeT {
         BSTNodeT<ND>* right_child_;
         ND contents_;
 };
-
+/*
 template <class ND>
 BSTNodeT<ND>::BSTNodeT() {
     left_child_ = NULL;
     right_child_ = NULL;
-    contents = 0;
-}
+    Simple(const T &value = T()); 
+}*/
 
 template <class ND>
-BSTNodeT<ND>::BSTNodeT(ND contents) {
+BSTNodeT<ND>::BSTNodeT(ND value) {
     left_child_ = NULL;
     right_child_ = NULL;
-    contents_ = contents;
+    contents_ = value;
 }
 
 template <class ND>

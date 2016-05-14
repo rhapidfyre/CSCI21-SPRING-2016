@@ -1,4 +1,4 @@
-#include "bst_node.h"
+#include "bst_nodet.h"
 
 #ifndef NODE
 #define NODE
@@ -23,6 +23,7 @@ class BSTreeT {
         string ToStringBackwards(BSTNodeT<TR>*& node);
         bool Remove(TR contents, BSTNodeT<TR>*& node);
         TR FindMin(BSTNodeT<TR>* node) const;
+        bool Exists(TR query, BSTNodeT<TR>*& node);
         BSTNodeT<TR>* root_;
         unsigned int size_;
 };
@@ -83,7 +84,7 @@ bool BSTreeT<TR>::Insert(TR newcontents, BSTNodeT<TR>*& node)
     }
     
     // If the incoming node is equal to the current node
-    if(node->GetContents() == newcontents) {return false;}
+    if(Exists(newcontents) == true) {return true;}
     
     else if(newcontents < node->GetContents()) {
         // If the left child is not NULL, we need to dig in until it is.
@@ -144,27 +145,21 @@ void BSTreeT<TR>::Clear(BSTNodeT<TR>*& node)
 } 
 
 template <class TR>
-bool BSTreeT<TR>::Exists(TR query) {
-    return false;
-}
-
-template <class TR>
 string BSTreeT<TR>::ToStringForwards(BSTNodeT<TR>*& node) {
     stringstream ss;
     if (node != NULL) {
         if(node->GetLeft() != NULL) {
-            ss << ToStringForwards(node->GetLeft());
+            ss << ToStringForwards(node->GetLeft()) << ", ";
         }
         
-            ss << node->GetContents() << " ";
+        ss << node->GetContents();
             
         if(node->GetRight() != NULL) {
-            ss << ToStringForwards(node->GetRight());
+            ss << ", " << ToStringForwards(node->GetRight());
         }
         return ss.str();
     } else {
         return "";
-        
     }
 }
 
@@ -173,13 +168,12 @@ string BSTreeT<TR>::ToStringBackwards(BSTNodeT<TR>*& node) {
     stringstream ss;
     if (node != NULL) {
         if(node->GetRight() != NULL) {
-            ss << ToStringForwards(node->GetRight());
+            ss << ToStringBackwards(node->GetRight()) << ", ";
         }
-        
-            ss << node->GetContents() << " ";
+            ss << node->GetContents();
             
         if(node->GetLeft() != NULL) {
-            ss << ToStringForwards(node->GetLeft());
+            ss << ", " << ToStringBackwards(node->GetLeft());
         }
         return ss.str();
     } else {
@@ -203,8 +197,36 @@ TR BSTreeT<TR>::FindMin() {
 }
 
 template <class TR>
-bool Exists(TR query) {
-    
+bool BSTreeT<TR>::Exists(TR query) {
+    return Exists(query, root_);
+}
+
+template <class TR>
+bool BSTreeT<TR>::Exists(TR query, BSTNodeT<TR>*& node) {
+    if(node == NULL) {
+        return false;
+    }
+    else if(node->GetContents() == query) {
+        return true;
+    }
+    else if(query < node->GetContents()) {
+        return Exists(query, node->GetLeft());
+    }
+    else if(query > node->GetContents()) {
+        return Exists(query, node->GetRight());
+    }else {
+        if(node->GetLeft() == NULL && node->GetRight() == NULL) {
+            return true;
+        }
+        else if((node->GetLeft() != NULL && node->GetRight() != NULL) || (node->GetLeft() == NULL && node->GetRight() != NULL)) {
+            return Exists(query, node->GetRight());
+        }
+        else if(node->GetLeft() != NULL && node->GetRight() == NULL) {
+            return Exists(query, node->GetLeft());
+        } else {
+            return Exists(query, node->GetLeft());
+        }
+    }
 }
 
 template <class TR>

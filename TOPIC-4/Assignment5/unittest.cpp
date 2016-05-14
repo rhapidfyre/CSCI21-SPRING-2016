@@ -7,7 +7,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
-#include "bs_tree.h"
+#include "bs_treet.h"
 using std::cout;
 using std::endl;
 using std::string;
@@ -128,7 +128,7 @@ void UnitTest() {
   Test(tree.ToStringBackwards() == actual, "ToStringBackwards()",
        tree.ToStringBackwards(), actual);
 
-  Test(tree.Insert(80) == 2, "Insert(80)");
+  Test(tree.Insert(80) == 1, "Insert(80)");
   Test(tree.GetSize() == 3, "GetSize()");
   actual = "20, 50, 80";
   Test(tree.ToStringForwards() == actual, "ToStringForwards()",
