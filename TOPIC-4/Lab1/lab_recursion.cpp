@@ -23,7 +23,7 @@ string decToBin(int num)
 	}
 
 	ss<<(num%2); //outputs in correct order
-	return ss;
+	return ss.str();
 }
 
 // Got help from Rus

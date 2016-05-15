@@ -60,7 +60,7 @@ int main() {
                     cout << "        Deletion was successful!\n        Size returned as: " << tree.GetSize() << endl;
                 }
                 else {
-                    cout << "        Deletion was unsuccessful!\n        " << read_in << " was not found." << endl;
+                    cout << "        Deletion was unsuccessful!\n       " << read_in << " was not found." << endl;
                 }
             }
             else if(read == 'G' || read == 'g') {

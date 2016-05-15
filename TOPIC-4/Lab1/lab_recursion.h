@@ -21,15 +21,7 @@ using std::stringstream;
  * @param number to be converted.
  * @return a stringstream.
  */
-stringstream decToBin(int num)
-{
-	if (num > 1) //note this makes the base case num = 0
-	{
-		decToBin(num/2); //recursive call
-	}
-
-	cout<<(num%2); //outputs in correct order
-}
+stringstream decToBin(int num);
 
 /*
  * Convert a binary number to decimal
