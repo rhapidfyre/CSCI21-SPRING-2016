@@ -12,24 +12,25 @@ int main() {
     // Initialize and open InputFile
     ifstream InputFile;
     InputFile.open(filename);
-    BSTreeT<string> tree;
+    BSTreeT<string>* tree;
     
     if(InputFile.is_open()) {
         while(!InputFile.eof()) {
             char read = InputFile.get();
             if(read == 'C' || read == 'c') {
                 cout << "Creating new Tree!" << endl;
-                cout << "        Tree Created, New Size = " << tree.GetSize() << endl;
+                tree = new BSTreeT<string>;
+                cout << "        Tree Created, New Size = " << tree->GetSize() << endl;
             }
             else if(read == 'X' || read == 'x') {
-                tree.Clear();
+                tree->Clear();
                 cout << "Cleared ALL Trees!" << endl;
             }
             else if(read == 'D' || read == 'd') {
                 cout << "Deleting ALL Trees...." << endl;
-                tree.~BSTreeT();
-                if(tree.GetSize() != 0) {
-                    cout << "        Deletion was unsuccessful!\n        Size returned as: " << tree.GetSize() << ".\n        Expected ZERO(0)" << endl;
+                tree->~BSTreeT();
+                if(tree->GetSize() != 0) {
+                    cout << "        Deletion was unsuccessful!\n        Size returned as: " << tree->GetSize() << ".\n        Expected ZERO(0)" << endl;
                 } else {
                     cout << "        Deletion Success!\n        Size returned as: 0" << endl;
                 }
@@ -38,14 +39,14 @@ int main() {
                 cout << "Inserting into trees!" << endl;
                 getline(InputFile, read_in);
                 cout << "Inserting: " << read_in << endl;
-                tree.Insert(read_in);
-                cout << "        Insertion Completed!\n        Size returned as: " << tree.GetSize() << endl;
+                tree->Insert(read_in);
+                cout << "        Insertion Completed!\n        Size returned as: " << tree->GetSize() << endl;
             }
             else if(read == 'F' || read == 'f') {
                 cout << "Searching for input!" << endl;
                 getline(InputFile, read_in);
                 cout << "Searching for: " << read_in << endl;
-                if(tree.Exists(read_in)) {
+                if(tree->Exists(read_in)) {
                     cout << "        Search Term was found in the Tree!" << endl;
                 }
                 else {
@@ -55,9 +56,9 @@ int main() {
             else if(read == 'R' || read == 'r') {
                 cout << "Removing input from tree!" << endl;
                 getline(InputFile, read_in);
-                if(tree.Exists(read_in)) {
-                    tree.Remove(read_in);
-                    cout << "        Deletion was successful!\n        Size returned as: " << tree.GetSize() << endl;
+                if(tree->Exists(read_in)) {
+                    tree->Remove(read_in);
+                    cout << "        Deletion was successful!\n        Size returned as: " << tree->GetSize() << endl;
                 }
                 else {
                     cout << "        Deletion was unsuccessful!\n       " << read_in << " was not found." << endl;
@@ -66,7 +67,7 @@ int main() {
             else if(read == 'G' || read == 'g') {
                 getline(InputFile, read_in);
                 cout << "Retrieving: " << read_in << endl;
-                if(tree.Exists(read_in)) {
+                if(tree->Exists(read_in)) {
                     cout << "        Successfully retrieved " << read_in << endl;
                 }
                 else {
@@ -75,24 +76,24 @@ int main() {
             }
             else if(read == 'N' || read == 'n') {
                 cout << "Retrieving current Node count in tree!" << endl;
-                cout << "        " << tree.GetSize() << endl;
+                cout << "        " << tree->GetSize() << endl;
             }
             else if(read == 'O' || read == 'o') {
                 cout << "Reading out tree FORWARDS!" << endl;
-                if(tree.GetSize() == 0) {
+                if(tree->GetSize() == 0) {
                     cout<< "        TREE EMPTY!!" << endl;
                 }
                 else { 
-                    cout << "       " << tree.ToStringForwards() << endl;
+                    cout << "       " << tree->ToStringForwards() << endl;
                 }
             }
             else if(read == 'E' || read == 'e') {
                 cout << "Reading out tree BACKWARDS!" << endl;
-                if(tree.GetSize() == 0) {
+                if(tree->GetSize() == 0) {
                     cout<< "        TREE EMPTY!!" << endl;
                 }
                 else { 
-                    cout << "       " << tree.ToStringForwards() << endl;
+                    cout << "       " << tree->ToStringForwards() << endl;
                 }
             } else {
                 

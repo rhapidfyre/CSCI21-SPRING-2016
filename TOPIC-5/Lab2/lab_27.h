@@ -60,7 +60,7 @@ class TreasureChest {
    * @param u-int position - The zero-indexed position of the item
    * @return const Item* - A pointer to the item if position is valid, else NULL
    */
-  const Item* GetItem(unsigned int position);
+  const Item* GetItem(unsigned int position) const;
 
   /*
    * Remove an item from the chest at a specified zero-indexed position.
