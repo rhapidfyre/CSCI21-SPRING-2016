@@ -5,14 +5,15 @@
  */
 
  
-#include "Savings.h"
+#include "Assignment2.h"
 
 Savings::Savings(): Account() {
     interest_ = 0.15; 
 }
 
-Savings::Savings(double balance, double deposit, double withdrawl): Account(balance, deposit, withdrawl) {
-
+Savings::Savings(string owner, double balance, double interest) {
+    owner_ = owner;
+    balance_ = balance;
     interest_ = 0.15;
 }
 double Savings::interest() const {
@@ -27,6 +28,8 @@ string Savings::ToString() const {
     stringstream ss;
     ss.setf(std::ios::fixed);
     ss.precision(2);
+    
+    ss << owner_ << "'s Account\n";
     ss << "SAVINGS INTEREST RATE: " << interest_;
     
     return ss.str();

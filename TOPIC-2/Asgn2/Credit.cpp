@@ -4,12 +4,14 @@
  * Assignment  : Assignment #2
  */
  
- #include "Credit.h"
+#include "Assignment2.h"
 Credit::Credit(): Account() {
     interest_ = 4.25; 
 }
 
-Credit::Credit(double balance, double deposit, double withdrawl): Account(balance, deposit, withdrawl) {
+Credit::Credit(string owner, double balance, double interest) {
+    owner_ = owner;
+    balance_ = balance;
     interest_ = 4.25;
 }
 double Credit_Card::GetInterestRate() const {
@@ -22,13 +24,15 @@ void Credit_Card::SetInterestRate(double interest) {
 
 string Credit_Card::ToString() const {
     stringstream ss;
-        ss.setf(std::ios::fixed);
-        ss.setf(std::ios::showpoint);
-        ss.setf(std::ios::right);
-        ss.precision(2);
-        ss << "CURRENT INTEREST RATE: " << interest_;
-        
-        return ss.str();
+    ss.setf(std::ios::fixed);
+    ss.setf(std::ios::showpoint);
+    ss.setf(std::ios::right);
+    ss.precision(2);
+    
+    ss << owner_ << "'s Account\n";
+    ss << "CURRENT INTEREST RATE: " << interest_;
+    
+    return ss.str();
 }
     
     

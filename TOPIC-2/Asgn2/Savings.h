@@ -1,24 +1,24 @@
  /*
- * Name        : Credit.h
+ * Name        : Debit.cpp
  * Author      : Michael Harris
  * Assignment  : Assignment #2
  */
  
- #include "Account.h"
- 
- #ifndef CREDIT
- #define CREDIT
- 
- 
-class Credit: public Account
+#include "Account.h"
+
+#ifndef SAVINGS
+#define SAVINGS
+
+class Savings: public Account
 {
     public:
-        Credit();
-        Credit(const double, const double, const double);
+        Savings();
+        Savings(string owner, double balance, double interest);
         double GetInterestRate() const;
         void SetInterestRate(double interest);
         string ToString() const;
-    private:
+    protected:
        double interest_;
 };
+
 #endif 

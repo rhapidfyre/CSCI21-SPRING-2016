@@ -17,18 +17,15 @@ class Account
 {
     public:
         Account();
-        Account(const double, const double, const double);
+        Account(string owner, double balance);
+        double GetOwner() const;
         double GetBalance() const;
-        double GetDeposit() const;
-        double GetWithdrawl() const;
+        void SetOwner() const;
         void SetBalance(double balance);
-        void SetDeposit(double deposit);
-        void SetWithdrawl(unsigned int withdrawl);
         string ToString() const;
     protected:
         double balance_;
-        double deposit_;
-        double withdrawl_;
+        string owner_;
 };
 
 #endif 

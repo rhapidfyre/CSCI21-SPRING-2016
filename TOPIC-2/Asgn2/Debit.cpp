@@ -4,27 +4,31 @@
  * Assignment  : Assignment #2
  */
  
- #include "Debit.h"
+#include "Assignment2.h"
  
-Checking::Checking(): Account() {
+Debit::Debit(): Account() {
     fee_ = 2.50; 
 }
 
-Checking::Checking(double balance, double deposit, double withdrawl): Account(balance, deposit, withdrawl) {
-    fee_ = 2.50;
+Debit::Debit(string owner, double balance, double fee) {
+    owner_ = owner;
+    balance_ = balance;
+    fee_ = fee;
 }
-double Checking::GetFee() const {
+double Debit::GetFee() const {
     return fee_;
 }
 
-void Checking::SetFee(double fee) {
+void Debit::SetFee(double fee) {
     fee_ = fee;
 }
 
-string Checking::ToString() const {
+string Debit::ToString() const {
     stringstream ss;
     ss.setf(std::ios::fixed);
     ss.precision(2);
+    
+    ss << owner_ << "'s Account\n";
     ss << "DEBIT USE FEE: $" << fee_;
     
     return ss.str();

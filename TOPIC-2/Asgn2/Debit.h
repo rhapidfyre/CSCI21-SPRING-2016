@@ -9,11 +9,11 @@
  #ifndef DEBIT
  #define DEBIT
  
-class Checking: public Account
+class Debit: public Account
 {
     public:
-        Checking();
-        Checking(const double, const double, const double);
+        Debit();
+        Debit(string owner, double balance, double fee);
         double GetFee() const;
         void SetFee(double fee);
         string ToString() const;
