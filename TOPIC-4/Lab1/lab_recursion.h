@@ -21,7 +21,7 @@ using std::stringstream;
  * @param number to be converted.
  * @return a stringstream.
  */
-stringstream decToBin(int num);
+string decToBin(int num);
 
 /*
  * Convert a binary number to decimal

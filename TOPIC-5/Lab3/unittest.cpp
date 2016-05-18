@@ -99,22 +99,28 @@ class HashTable {
 
 // FUNCTION DEFINITIONS GO HERE
 void HashTable::insert(Item i) {
-	items[hash(i.contents)].push_back(i);
+    int index = hash(i -> key);
+    array[index].insertItem( newItem );
 }
 
 bool Hashtable::remove(const string& contents) {
-	items[hash(contents)].clear();
-	return true;
+    int index = hash( itemKey );
+    Item[index].removeItem(contents);
+    return true;
 }
 
 Item* HashTable::getItem (const string& contents) {
 	unsigned hash_num = hash(contents);
-	if(items[hash_num].empty()) return NULL;
+	if(Item[hash_num].empty()) return NULL;
 	else return (&items[hash_num].font());
 }
 
 unsigned int HashTable::size) const {
-	return items.size();
+	unsigned int num = 0;
+	for (unsigned char index = 0; index < Item.size(); index++) {
+		num = num + Item[index].size();
+	}
+	return num;
 }
 
 unsigned int HashTable::hash(const Item& i) const {
@@ -125,12 +131,20 @@ unsigned int HashTable::hash(const Item& i) const {
 	}
 }
 
-string HashTable::printDetail() {
-	stringstream ss;
-	ss << "Items in hash table: " << items.size();
-	for(unsigned int i = 0; i < items.size();i++) {
-		
+unsigned int HashTable::hash(const string& s) const {
+	unsigned int hash_value = 0;
+	for(unsigned int i = 0; i < s.size();index++) {
+		hash_value = hash_value + s[i];
 	}
+	return (hash_value % size());
+}
+
+string HashTable::printDetail() {
+	/*stringstream ss;
+	ss << "Items in hash table: " << Item.size();
+	for(unsigned int i = 0; i < Item.size();i++) {
+		
+	}*/
 }
 
 TEST_CASE ("hash function and hash table functionality") {
