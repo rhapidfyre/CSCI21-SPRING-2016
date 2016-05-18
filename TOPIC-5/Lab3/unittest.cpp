@@ -98,6 +98,40 @@ class HashTable {
 };
 
 // FUNCTION DEFINITIONS GO HERE
+void HashTable::insert(Item i) {
+	items[hash(i.contents)].push_back(i);
+}
+
+bool Hashtable::remove(const string& contents) {
+	items[hash(contents)].clear();
+	return true;
+}
+
+Item* HashTable::getItem (const string& contents) {
+	unsigned hash_num = hash(contents);
+	if(items[hash_num].empty()) return NULL;
+	else return (&items[hash_num].font());
+}
+
+unsigned int HashTable::size) const {
+	return items.size();
+}
+
+unsigned int HashTable::hash(const Item& i) const {
+	unsigned int carry = hash(i.contents);
+	unsigned int hash_number = 0;
+	for(unsigned i = 0; i < carry.size(); i++) {
+		hash_number = (hash_number + carry[i]);
+	}
+}
+
+string HashTable::printDetail() {
+	stringstream ss;
+	ss << "Items in hash table: " << items.size();
+	for(unsigned int i = 0; i < items.size();i++) {
+		
+	}
+}
 
 TEST_CASE ("hash function and hash table functionality") {
 	Item items[15] = {Item("apple"), Item("banana"), Item("grape"), Item("lemon"), 
