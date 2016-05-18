@@ -10,17 +10,24 @@
 
 // CLASS (and regular) FUNCTION DEFINITIONS GO HERE
 void TreasureChest::AddItem(const Item& item_to_add) {
+    // Push the new item to the back of the array
+    // It doesn't have to be organized, but this will increase the array size
     chest_.push_back(item_to_add);
 }
 void TreasureChest::InsertItem(const Item& item_to_add, unsigned int position) {
+    // If the pos is greater or equal to the size, it goes to the end
+    // So that the size gets increased, otherwise SEGABORT
     if (position >= chest_.size()) {
         chest_.push_back(item_to_add);
     } else {
+        // Otherwise, it's less than the size, so stick it in where it belongs
         chest_.insert(chest_.begin()+position, item_to_add);
     }
 }
 const Item* TreasureChest::GetItem(unsigned int position) const {
     if(!chest_.empty()) {
+        // If the chest vector is NOT empty, but the requested position is bigger than
+        // the size of the vector, return NULL --- It doesn't exist.
         if(position >= chest_.size()) {
             return NULL;
         }
@@ -30,9 +37,12 @@ const Item* TreasureChest::GetItem(unsigned int position) const {
     }
 }
 Item TreasureChest::RemoveItem(unsigned int position) {
+    // We're returning the datatype of Item Object, so we declare a new object for now
     Item temp;
     if (position < chest_.size()) {
+        // Set our temp object to whatever object is in the position given
         temp = chest_[position];
+        // Kill it
         chest_.erase(chest_.begin()+position);
     } else {
         throw string("ERROR: Remove at invalid position");
@@ -40,7 +50,7 @@ Item TreasureChest::RemoveItem(unsigned int position) {
     return temp;
 }
 void TreasureChest::Clear() {
-    chest_.clear();
+    chest_.clear(); // The clear function 
 }
 bool TreasureChest::Empty() const {
     if(chest_.empty()) {
