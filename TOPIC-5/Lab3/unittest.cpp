@@ -99,53 +99,86 @@ class HashTable {
 
 // FUNCTION DEFINITIONS GO HERE
 void HashTable::insert(Item i) {
-    int index = hash(i -> key);
-    array[index].insertItem( newItem );
-}
-
-bool Hashtable::remove(const string& contents) {
-    int index = hash( itemKey );
-    Item[index].removeItem(contents);
-    return true;
-}
-
-Item* HashTable::getItem (const string& contents) {
-	unsigned hash_num = hash(contents);
-	if(Item[hash_num].empty()) return NULL;
-	else return (&items[hash_num].font());
-}
-
-unsigned int HashTable::size) const {
-	unsigned int num = 0;
-	for (unsigned char index = 0; index < Item.size(); index++) {
-		num = num + Item[index].size();
-	}
-	return num;
-}
-
-unsigned int HashTable::hash(const Item& i) const {
-	unsigned int carry = hash(i.contents);
-	unsigned int hash_number = 0;
-	for(unsigned i = 0; i < carry.size(); i++) {
-		hash_number = (hash_number + carry[i]);
+	
+	if(getItem(i.contents) == NULL) {
+		cout  << "    VOIDED: " << i.contents << endl;
+	} else {
+		cout  << "     ADDED:" << i.contents << endl;
+		items[hash(i.contents)].push_back(i);
 	}
 }
 
-unsigned int HashTable::hash(const string& s) const {
-	unsigned int hash_value = 0;
-	for(unsigned int i = 0; i < s.size();index++) {
-		hash_value = hash_value + s[i];
+bool HashTable::remove(string contents) {
+	cout << "Function remove(" << contents << ")" << endl;
+	items[hash(contents)].clear();
+	cout << "        Removing:(" << hash(contents) << ")" << endl;
+	return true;
+}
+
+Item* HashTable::getItem(string contents) {
+	unsigned value = hash(contents);
+	cout << "Function getItem(" << contents << ")" << endl;
+	return (items[value].empty()? NULL : &items[value].front());
+	/*unsigned value = hash(contents);
+	Item *temp;
+	temp = &items[value].front();
+	if(!temp) {
+		return NULL;
 	}
-	return (hash_value % size());
+	while (temp != NULL) {
+		if(temp->contents == value) {
+			return temp;
+		}
+	}
+	
+	return NULL;*/
+	
+	/*
+			if((items[i].begin()) == value) {
+				return (&items[value].front());
+			}
+	*/
+}
+
+unsigned int HashTable::size()  {
+	unsigned int number = 0;
+	cout << "Function size()" << endl;
+	for (unsigned i = 0; i < 5; i++) {
+		number = number + items[i].size();
+		cout << "        Number: (" << number << ")" << endl;
+	}
+	return number;
+}
+
+unsigned int HashTable::hash(Item i)  {
+	cout << "Function hash(Item i)\n        Hash:(" << hash(i.contents) << ")" << endl;
+	return hash(i.contents);
+}
+
+unsigned int HashTable::hash(string s)  {
+	unsigned value = 0;
+	for (unsigned index = 0; index < s.size(); index++) {
+		value += s[index];
+	}
+	cout << "Function hash(string s)\n        Hash:("<<(value%5)<<")"<<endl;
+	return (value % 5);
 }
 
 string HashTable::printDetail() {
-	/*stringstream ss;
-	ss << "Items in hash table: " << Item.size();
-	for(unsigned int i = 0; i < Item.size();i++) {
-		
-	}*/
+	stringstream ss;
+	cout << "Function printDetail()" << endl;
+	ss << "Items in hash table: " << size() << "\n";
+	for (unsigned i = 0; i < 5; i++) {
+		ss << "["<<i<<"]\n";
+	}
+
+	return ss.str();
 }
+
+
+
+
+// Unit Test Cases
 
 TEST_CASE ("hash function and hash table functionality") {
 	Item items[15] = {Item("apple"), Item("banana"), Item("grape"), Item("lemon"), 
